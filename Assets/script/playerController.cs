@@ -6,9 +6,10 @@ using UnityEngine.UI;
 
 public class playerController : MonoBehaviour
 {
-
+    [SerializeField]
+    private GameOverController gameOverController;
     //playerOne herite de la class generalClass.Player
-    private Player playerOne = new Player();
+    public Player playerOne = new Player();
 
     //variable d'input controler par inputManager
     public float mouvX;
@@ -49,8 +50,9 @@ public class playerController : MonoBehaviour
             //condition gamme over
             if (playerOne.playerLife <= 0)
             {
-                //game over très radicale
-                Destroy(gameObject);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                gameOverController.gameOver();
             }
         }
     }

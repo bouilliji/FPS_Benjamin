@@ -42,12 +42,14 @@ public class generalClass
         public float playerSpeed                {get; set;}
         public float playerLife                 {get; set;}
         public float playerRotationSensitivity  {get; set;}
+        public int playerKill                 {get; set;}
 
         public Player()
         {
             this.playerSpeed                    = 3.3f;         //vitesse marche 1.3f, vitesse course d'endurance 3.3f et vitesse sprint 6.9f
             this.playerLife                     = 100f;
             this.playerRotationSensitivity      = 150f;           //pour une unité de déplacement de la souris le personnage tourneras de playerRotationSensitivity°
+            this.playerKill                     = 0;
         }
     }
 

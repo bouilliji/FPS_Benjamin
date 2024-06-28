@@ -13,17 +13,41 @@ public class enemyGenerator : MonoBehaviour
     private Transform enemyGenerator1;
     [SerializeField]
     private Transform enemyGenerator2;
-    private int whatSpawn;
-
+    private int whatSpawn = 1;
+    [SerializeField]
+    private playerController playerController;
     // Start is called before the first frame update
     void Start()
     {
-        
+    }
+
+    private bool isRunning = false;
+
+    public void StartGAme()
+    {
+        isRunning = true;
+        EnemiesAlive = new List<GameObject>();
+    }
+
+    public void EndGame()
+    {
+        isRunning = false;
+        StopAllCoroutines();
+
+        foreach (GameObject go in EnemiesAlive)
+        {
+            if (go != null)
+            {
+                Destroy(go);
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!isRunning)
+            return;
 
         if (mobIsSpawning == false)
         {
@@ -31,23 +55,35 @@ public class enemyGenerator : MonoBehaviour
             mobIsSpawning = true;
         }  
     }
-     
+
+    public List<GameObject> EnemiesAlive;
+
     IEnumerator spawn(int intervalle)
     {
+        GameObject nE = null;
+
         if (whatSpawn == 1)
         {
-            Instantiate(enemy, transform.position, transform.rotation);
+                
+            nE = Instantiate(enemy, transform.position, transform.rotation);
+        }
+        else if (whatSpawn == 2)
+        {
+            nE = Instantiate(enemy, enemyGenerator1.position, enemyGenerator1.rotation);
+        }
+        else if (whatSpawn == 3)
+        {
+            nE  = Instantiate(enemy, enemyGenerator2.position, enemyGenerator2.rotation);
         }
 
-        if (whatSpawn == 2)
-        {
-            Instantiate(enemy, enemyGenerator1.position, enemyGenerator1.rotation);
-        }
+        if (nE == null)
+            Debug.Log("nE null");
 
-        if (whatSpawn == 3)
-        {
-            Instantiate(enemy, enemyGenerator2.position, enemyGenerator2.rotation);
-        }
+        enemyController ec = nE.GetComponent<enemyController>();
+        ec.playerController = playerController;
+        ec.playerTransform = playerController.transform;
+
+        EnemiesAlive.Add(nE);
 
         //attente de intervalle seconde
         yield return new WaitForSeconds(intervalle);

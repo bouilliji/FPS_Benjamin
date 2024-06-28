@@ -11,24 +11,24 @@ public class cursorController : MonoBehaviour
     void Start()
     {
         //innitialisation etat du curser
-        Cursor.lockState = CursorLockMode.Locked;
+      //  Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //si 0 est preser et que le curser est unlock allors on lock
-        if (cursorIsLocked == false && Input.GetKeyDown(KeyCode.Keypad0))
-        {
-            LockCursor();
-            cursorIsLocked = true;
-        }
-        //si 0 est preser et que le curser est lock allors on unlock
-        else if (cursorIsLocked == true && Input.GetKeyDown(KeyCode.Keypad0))
-        {
-            UnlockCursor();
-            cursorIsLocked = false;
-        }
+        ////si 0 est preser et que le curser est unlock allors on lock
+        //if (cursorIsLocked == false && Input.GetKeyDown(KeyCode.Keypad0))
+        //{
+        //    LockCursor();
+        //    cursorIsLocked = true;
+        //}
+        ////si 0 est preser et que le curser est lock allors on unlock
+        //else if (cursorIsLocked == true && Input.GetKeyDown(KeyCode.Keypad0))
+        //{
+        //    UnlockCursor();
+        //    cursorIsLocked = false;
+        //}
     }
 
     public void LockCursor()

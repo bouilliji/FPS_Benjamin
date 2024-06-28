@@ -5,6 +5,8 @@ using static generalClass;
 
 public class enemyController : MonoBehaviour
 {
+    [SerializeField]
+    public playerController playerController;
 
     //newEnemy herite de la class generalClass.Enemy
     private Enemy newEnemy = new Enemy();
@@ -14,16 +16,13 @@ public class enemyController : MonoBehaviour
     private Vector3 mouvEnemyNormalized;
 
     //recupération gamme Object player et sa position
-    private GameObject player;
     public Transform playerTransform;
 
     // Start is called before the first frame update
     void Start()
     {
-        //initialisation de player
-        player = GameObject.Find("player");
-        playerTransform = player.transform;
-    }
+        
+     }
 
     // Update is called once per frame
     void Update()
@@ -50,6 +49,7 @@ public class enemyController : MonoBehaviour
             if (newEnemy.enemyLife <= 0)
             {
                 Destroy(gameObject);
+                playerController.playerOne.playerKill += 1;
             }
         }
 
