@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class bulletGenerator : MonoBehaviour
 {
@@ -14,10 +16,16 @@ public class bulletGenerator : MonoBehaviour
 
     public int munition = 30;
 
+    [SerializeField]
+    private CheatController CheatController;
+    /*[SerializeField]
+    private TextMeshProUGUI munitionText;*/
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        /*munitionText = GetComponent<TextMeshProUGUI>();
+        munitionText.text = "30";*/
     }
 
     // Update is called once per frame
@@ -33,10 +41,26 @@ public class bulletGenerator : MonoBehaviour
 
             //suprésion de l'autorisation de tirrer
             itCanPull = false;
-
-            //debut du cooldown
-            StartCoroutine(Cooldown(0.5f));
+            if (CheatController.cooldoxnIsTrue)
+            {
+                //debut du cooldown
+                StartCoroutine(Cooldown(0.5f));
+            }
+            else
+            {
+                itCanPull = true;
+            }
+            
         }
+        if (CheatController.munitionInfinit)
+        {
+            munition = 10;
+            //munitionText.text = "∞";
+        }
+        /*else
+        {
+            munitionText.text = munition.ToString();
+        }*/
 
         if (Input.GetMouseButtonDown(1))
         {
@@ -44,6 +68,7 @@ public class bulletGenerator : MonoBehaviour
             itCanPull = false;
             StartCoroutine(Cooldown(1f));
         }
+
     }
 
     IEnumerator Cooldown(float seconde)

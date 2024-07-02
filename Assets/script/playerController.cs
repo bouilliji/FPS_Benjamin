@@ -16,10 +16,11 @@ public class playerController : MonoBehaviour
     public float mouvZ;
     public float rotateY;
 
-    //cette variable gÃ¨rre la barre de vie
+    //cette variable gèrre la barre de vie
     [SerializeField]
-    private Slider healthBar; 
+    private Slider healthBar;
 
+    // Start is called before the first frame update
     void Start()
     {
         //initialisation bar de vie
@@ -34,7 +35,7 @@ public class playerController : MonoBehaviour
         transform.Translate(mouvX * playerOne.playerSpeed * Time.deltaTime, 0, mouvZ * playerOne.playerSpeed * Time.deltaTime);
 
         //Rotation du player en Y
-        transform.Rotate(0,rotateY * playerOne.playerRotationSensitivity * Time.deltaTime, 0);
+        transform.Rotate(0, rotateY * playerOne.playerRotationSensitivity * Time.deltaTime, 0);
     }
 
     void OnCollisionEnter(Collision collision)

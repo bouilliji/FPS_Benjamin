@@ -15,6 +15,10 @@ public class GameOverController : MonoBehaviour
     private enemyGenerator enemyGenerator;
     [SerializeField]
     private playerController playerController;
+    [SerializeField]
+    private Slider healthBar;
+    [SerializeField]
+    private bulletGenerator bulletGenerator;
 
     private void Awake()
     {
@@ -28,7 +32,10 @@ public class GameOverController : MonoBehaviour
         cursorController.LockCursor();
         enemyGenerator.StartGAme();
         playerController.playerOne.playerLife = 100;
+        healthBar.value = playerController.playerOne.playerLife;
         playerController.playerOne.playerKill = 0;
+        bulletGenerator.munition = 30;
+
     }
 
 
